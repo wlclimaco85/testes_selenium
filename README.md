@@ -7,6 +7,47 @@ Suite de testes Selenium para o addon **Dhara Pecuária** rodando no **Sankhya O
 
 ---
 
+## ⚡ Início Rápido
+
+```bash
+# 1. Clonar
+git clone https://github.com/wlclimaco85/testes_selenium.git
+cd testes_selenium
+
+# 2. Instalar dependências
+pip install -r requirements.txt
+
+# 3. Configurar ambiente
+cp .env.example .env
+# Edite .env com: SANKHYA_BASE_URL, SANKHYA_USER, SANKHYA_PASSWORD
+
+# 4. Rodar smoke (não altera dados — todas as 11 telas)
+python -m pytest tests/ -m smoke -v
+
+# 5. Suite completa (sem dados mutantes)
+python -m pytest tests/ -v
+
+# 6. Headless
+HEADLESS=1 python -m pytest tests/ -v
+
+# 7. Com criação de registros de teste
+DHARA_E2E_MUTATING=1 python -m pytest tests/ -v
+```
+
+### O que cobre
+
+| Arquivo | Cobertura |
+|---------|-----------|
+| `test_00_smoke_navigation` | **11 telas** — todas abrem sem erro |
+| `test_01_cadastros_base` | Faixa Etária, Raça, Tipo Exame (smoke + CRUD) |
+| `test_02_entrada_animais` | Entrada de Animais, Histórico |
+| `test_03_reproducao` | IATF/Monta, Diagnóstico, Parto |
+| `test_04_apontamento_saida` | Apontamento Pecuária, Saída de Animais |
+| `test_05_botoes_acao` | Inventário de botões Java (BaixaAnimal, Diagnostico, etc.) |
+| `test_06_fluxo_completo` | Fluxo ponta a ponta (requer `DHARA_E2E_MUTATING=1`) |
+
+---
+
 ## 📁 Estrutura
 
 ```
